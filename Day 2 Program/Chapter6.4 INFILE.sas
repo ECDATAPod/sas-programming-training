@@ -1,103 +1,55 @@
+/*6.5.1 read in consencutive delimited data*/
 
-/* 6.3.1 listed style input sample */
-
-DATA temp;
-  input  staff_id 
-		staff_name $
-		 staff_lname $
-		 depart_id $
-		 seq_id $
-		 num_sales
-		target_dt mmddyy8. 
-		  prize comma5.;
-	format target_dt mmddyy8. prize comma5.;
-	DATALINES;
-1024 Jason Smith 1 65 125 12/1/95 2,036
-1167 Maryann White 1 68 140 12/01/95 1,800
-1201 Benedictine Arnold 2 68 190 11/30/95 2,432
-1302 Felicia Ho 1 63 115 1/1/96 1,972			
-run;
+data sales;
+/*specified the file path and infile option dsd  */
+ infile '/home/u63329560/DATA/sales_data.csv' dlm=',' firstobs=2 dsd;
+ 
+/*  informat  give sas instruction to read in data */
+Informat ID $10.
+         DATE YYMMDD10.
+		 PRODUCT $20.
+		 PRICE 8.
+		 QUANTITY 8. ;
+		
 
 
+/*format  give sas instruction to format the displayed values */
+format   ID  $10.
+         DATE date9.
+		 PRODUCT $20.
+		 PRICE dollar10.2
+		 QUANTITY 
+		 TOTAL dollar10.2; 
+		
+/* input statement */
+input ID $ Date PRODUCT $ PRICE QUANTITY TOTAL;
+run; 
 
 
-/* 6.3.2 listed style input sample  with length*/
+/*6.5.2 read in missing data*/
 
-DATA temp;
-length staff_name $20.;
-  input staff_id 
-		staff_name $
-		staff_lname $
-		depart_id $
-		seq_id $
-		num_sales
-			target_dt  mmddyy8.  
-	    prize comma5. ;
-			
-format target_dt mmddyy8. prize comma5.;
-			
-	DATALINES;
-1024 Jason Smith 1 65 125 12/1/95 2,036
-1167 Maryann White 1 68 140 12/01/95 1,800
-1201 Benedictine Arnold 2 68 190 11/30/95 2,432
-1302 Felicia Ho 1 63 115 1/1/96 1,972			
-run;
+data sales;
+/*specified the file path and infile option missover*/
+ infile '/home/u63329560/DATA/sales_data3.csv' dlm=',' firstobs=2 dsd missover;
+ 
+/*  informat  give sas instruction to read in data */
+Informat ID $10.
+         DATE YYMMDD10.
+		 PRODUCT $20.
+		 PRICE 8.
+		 QUANTITY 8. ;
+		
 
-/* 6.3.2 listed style input sample with informat */
 
-DATA temp;
-informat staff_id 8. 
-			 staff_name $20.
-			 staff_lname $20.
-			 depart_id $5.
-			 seq_id $5.
-			 num_sales 8. 
-			 target_dt   mmddyy8. 
-			 prize comma5.;
-			 
-format target_dt mmddyy8. prize comma5.;
-			
-  input staff_id 
-		staff_name $
-		staff_lname $
-		depart_id $
-		seq_id $
-		num_sales
-		target_dt   
-	    prize ;
-
-	DATALINES;
-1024 Jason Smith 1 65 125 12/1/95 2,036
-1167 Maryann White 1 68 140 12/01/95 1,800
-1201 Benedictine Arnold 2 68 190 11/30/95 2,432
-1302 Felicia Ho 1 63 115 1/1/96 1,972			
-run;
-
-/* 6.3.3 listed style input sample with infile and informat */
-DATA temp;
-infile datalines dsd dlm=',' truncover ;
-informat staff_id 8. 
-			 staff_fullname $20.
-			 depart_id $5.
-			 seq_id $5.
-			 num_sales 8. 
-			 target_dt   mmddyy8. 
-			 prize comma5.;
-format target_dt mmddyy8. prize comma5.;
-			
-input staff_id 
-		staff_fullname $
-		depart_id $
-		seq_id $
-		num_sales
-		target_dt   
-	    prize ;
-
-DATALINES;
-1024,Jason Smith,1,65,125,12/1/95,2,036
-1167,Maryann White,1,68,140, 12/01/95,1,800
-1168,Thomas Jones,2,,190,12/02/95,2,302
-1201,Benedictine Arnold,2,68,190,11/30/95,2,432
-1302,Felicia Ho,1,63,115,01/01/96,1,972			
-run;
+/*format  give sas instruction to format the displayed values */
+format   ID  $10.
+         DATE date9.
+		 PRODUCT $20.
+		 PRICE dollar10.2
+		 QUANTITY 
+		 TOTAL dollar10.2; 
+		
+/* input statement */
+input ID $ Date PRODUCT $ PRICE QUANTITY TOTAL;
+run; 
 
