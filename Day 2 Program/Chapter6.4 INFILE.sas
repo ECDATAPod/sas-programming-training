@@ -1,4 +1,4 @@
-/*6.5.1 read in consencutive delimited data*/
+/*6.4.1 read in consencutive delimited data*/
 
 data sales;
 /*specified the file path and infile option dsd  */
@@ -26,7 +26,7 @@ input ID $ Date PRODUCT $ PRICE QUANTITY TOTAL;
 run; 
 
 
-/*6.5.2 read in missing data*/
+/*6.4.2 read in missing data*/
 
 data sales;
 /*specified the file path and infile option missover*/

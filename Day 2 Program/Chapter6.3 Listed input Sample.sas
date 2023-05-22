@@ -8,49 +8,18 @@ DATA temp;
 		 seq_id $
 		 num_sales
 		target_dt mmddyy8. 
-		  prize $;
-	format target_dt mmddyy8. prize comma5.;
+		  prize comma10.;
+	format target_dt mmddyy8. prize comma10.;
 	DATALINES;
 1024 Jason Smith 1 65 125 12/1/95 2,036
 1167 Maryann White 1 68 140 12/01/95 1,800
-
+1201 Benedictine Arnold 2 68 190 11/30/95 2,432
+1302 Felicia Ho 1 63 115 01/01/96 1,972
 ;
 run;
 
 
 
-DATA temp;
-  input subj name $ gender height weight  comma5.;
-  CARDS;
-  1024 Alice 1 65 125
-  1167 Maryann 1 68 140
-  1168 Thomas 2 68 190
-  1201 Benedictine . 68 190
-  1302 Felicia 1 63 1,151
-  ;
-RUN;
-
-/* 6.3.1 listed style input sample  with length*/
-
-DATA temp;
-length staff_name $20.;
-  input staff_id 
-		staff_name $
-		staff_lname $
-		depart_id $
-		seq_id $
-		num_sales
-			target_dt  mmddyy8.  
-	    prize comma5. ;
-			
-format target_dt mmddyy8. prize comma5.;
-			
-	DATALINES;
-1024 Jason Smith 1 65 125 12/1/95 2,036
-1167 Maryann White 1 68 140 12/01/95 1,800
-1201 Benedictine Arnold 2 68 190 11/30/95 2,432
-1302 Felicia Ho 1 63 115 1/1/96 1,972
-run;
 
 /* 6.3.2 listed style input sample with informat */
 
@@ -79,7 +48,7 @@ format target_dt mmddyy8. prize comma5.;
 1024 Jason Smith 1 65 125 12/1/95 2,036
 1167 Maryann White 1 68 140 12/01/95 1,800
 1201 Benedictine Arnold 2 68 190 11/30/95 2,432
-1302 Felicia Ho 1 63 115 1/1/96 1,972
+1302 Felicia Ho 1 63 115 01/01/96 1,972
 ;
 run;
 
@@ -92,8 +61,8 @@ informat staff_id 8.
 			 seq_id $5.
 			 num_sales 8. 
 			 target_dt   mmddyy8. 
-			 prize comma5.;
-format target_dt mmddyy8. prize comma5.;
+			 prize comma10.;
+format target_dt mmddyy8. prize comma10.;
 			
   input staff_id 
 		staff_fullname $
@@ -103,12 +72,12 @@ format target_dt mmddyy8. prize comma5.;
 		target_dt   
 	    prize ;
 
-	DATALINES;
-1024,Jason Smith,1,65,125,12/1/95,2,036
-1167,Maryann White,1,68,140, 12/01/95,1,800
-1168,Thomas Jones,2,,190,12/02/95,2,302
-1201,Benedictine Arnold,2,68,190,11/30/95,2,432
-1302,Felicia Ho,1,63,115,01/01/96,1,972
+DATALINES;
+1024,Jason Smith,1,65,125,12/1/95,"2,036"
+1167,Maryann White,1,68,140, 12/01/95,"1,800"
+1168,Thomas Jones,2,,190,12/02/95,"2,302"
+1201,Benedictine Arnold,2,68,190,11/30/95,"2,432"
+1302,Felicia Ho,1,63,115,1/1/96,"1,972"
 ;
 run;
 
